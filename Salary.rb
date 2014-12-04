@@ -66,6 +66,7 @@ class CSalaryExcel
 		chk = out_person_htm{|chk_out|
 			chk_all_table = ""
 			cnt = 0
+			first = true
 			@person_info.each{|k, v|
 				#~ mail_addr = $mail_addr.get_mail_add(k)
 				mail_addr, fname = $mail_addr.get_mail_add_fname(k)
@@ -74,7 +75,8 @@ class CSalaryExcel
 					# mail_content =  out_person_htm{|out|
 					# 	out = out_person_htm_table(k, v)
 					# }
-					chk_all_table += out_person_htm_bady(k, fname) if 0==cnt
+					chk_all_table += out_person_htm_bady(k, fname) if first
+					first=false
 					chk_all_table += out_person_htm_table(k, v)
 					if realy_send
 						atta_file = "#{FileUtils.pwd.gsub("/", "\\")}\\#{@month}\\#{k}_#{@month}.htm"
